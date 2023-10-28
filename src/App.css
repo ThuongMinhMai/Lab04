@@ -47,3 +47,10 @@
 .logo img {
   width: 90%;
 }
+.zoom-effect:hover {
+  transform: scale(1.1); /* Adjust the scale factor as needed */
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+.task:hover{
+  background-color: rgb(255, 255, 255);
+}

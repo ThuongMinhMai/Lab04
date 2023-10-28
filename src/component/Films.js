@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { films } from "../shared/ListOfFilms";
 import {
   Container,
@@ -88,6 +88,25 @@ function Films() {
     right: "20px", // Adjust the position as needed
     zIndex: 999, // Ensures the icon appears on top of other elements
   };
+
+  const [APIData, setAPIData] = useState([]);
+  const baseURL = `https://6532a37dd80bd20280f5de12.mockapi.io/films`;
+
+  useEffect(() => {
+    fetch(baseURL)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setAPIData(data);
+      })
+      .catch((error) => console.log(error.message));
+  }, []);
+
+
   return (
     <div
       style={
@@ -98,7 +117,7 @@ function Films() {
     >
       <Container style={{paddingTop:"100px"}}>
         <Grid container spacing={3}>
-          {films.map((film) => (
+          {APIData.map((film) => (
             <Grid item xs={12} sm={6} md={4}>
               <Card
                 sx={{ maxWidth: 350 }}
@@ -111,6 +130,7 @@ function Films() {
                   alt={film.title}
                   image={film.image}
                   height={500}
+                  className="zoom-effect"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">

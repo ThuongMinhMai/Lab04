@@ -38,7 +38,7 @@ function Contact() {
                 <Grid item xs={12}>
                   <Button type="submit" variant="contained" color="primary" fullWidth>Submit</Button>
                 </Grid>
-
+                
               </Grid>
             </form>
           </CardContent>
